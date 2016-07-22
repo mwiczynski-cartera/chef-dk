@@ -1,6 +1,6 @@
 
 context = ChefDK::Generator.context
-cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
+cookbook_dir = context.cookbook_root
 files_dir = File.join(cookbook_dir, "files", "default")
 cookbook_file_path = File.join(cookbook_dir, "files", "default", "#{context.new_file_basename}")
 

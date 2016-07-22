@@ -11,7 +11,7 @@ shared_examples_for "a file generator" do
     stderr_io.string
   end
 
-  let(:expected_cookbook_root) { tempdir }
+  let(:expected_cookbook_root) { "#{tempdir}/example_cookbook" }
   let(:cookbook_name) { "example_cookbook" }
 
   let(:cookbook_path) { File.join(tempdir, cookbook_name) }
@@ -105,7 +105,7 @@ shared_examples_for "a file generator" do
         recipe_generator.read_and_validate_params
         recipe_generator.setup_context
 
-        expect(generator_context.cookbook_root).to eq(File.dirname(cookbook_path))
+        expect(generator_context.cookbook_root).to eq(cookbook_path)
         expect(generator_context.cookbook_name).to eq(cookbook_name)
         expect(generator_context.new_file_basename).to eq(new_file_name)
       end

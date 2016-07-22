@@ -1,6 +1,6 @@
 
 context = ChefDK::Generator.context
-cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
+cookbook_dir = context.cookbook_root
 
 silence_chef_formatter unless context.verbose
 

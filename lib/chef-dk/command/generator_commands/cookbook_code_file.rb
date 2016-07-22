@@ -62,11 +62,21 @@ module ChefDK
         end
 
         def cookbook_root
-          File.dirname(cookbook_path)
+          cookbook_path
         end
 
         def cookbook_name
-          File.basename(cookbook_path)
+          name = File.dirname(cookbook_path)
+          File.open(File.join(cookbook_path, "metadata.rb"), "r") do |f|
+            f.each_line do |line|
+              if line =~ /\Aname.*/
+                #name = line.gsub(/name[\s'"]*|['"]\Z/,'').chomp!
+                name = line.split(' ')[1].gsub!(/\A['"]|['"]\Z/, '').chomp
+                break
+              end
+            end
+          end
+          name
         end
 
         def read_and_validate_params
